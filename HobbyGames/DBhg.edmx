@@ -1,0 +1,705 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Contacts">
+          <Key>
+            <PropertyRef Name="IdStore" />
+          </Key>
+          <Property Name="IdStore" Type="int" Nullable="false" />
+          <Property Name="Adress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="IDEmp" />
+          </Key>
+          <Property Name="IDEmp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First_Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Second_Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="PhoneE" Type="nvarchar" MaxLength="13" Nullable="false" />
+          <Property Name="Seria_Passport" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="Nomer_Passport" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="Store" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genres">
+          <Key>
+            <PropertyRef Name="IDGenre" />
+          </Key>
+          <Property Name="IDGenre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Genre" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Logins">
+          <Key>
+            <PropertyRef Name="IDe" />
+          </Key>
+          <Property Name="IDe" Type="int" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="int" Nullable="false" />
+          <Property Name="IDRole" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "41П_МДК01.01_Ледров.dbo.Orders" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Employee" />
+            <PropertyRef Name="Store" />
+            <PropertyRef Name="Game" />
+            <PropertyRef Name="Kolvo" />
+            <PropertyRef Name="CostS" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Employee" Type="int" Nullable="false" />
+          <Property Name="Store" Type="int" Nullable="false" />
+          <Property Name="Game" Type="int" Nullable="false" />
+          <Property Name="Kolvo" Type="int" Nullable="false" />
+          <Property Name="CostS" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producers">
+          <Key>
+            <PropertyRef Name="IdProducer" />
+          </Key>
+          <Property Name="IdProducer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Producer" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "41П_МДК01.01_Ледров.dbo.Storage" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Storage">
+          <Key>
+            <PropertyRef Name="IDStorage" />
+            <PropertyRef Name="Store" />
+            <PropertyRef Name="Game" />
+            <PropertyRef Name="Kolvo" />
+          </Key>
+          <Property Name="IDStorage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Store" Type="int" Nullable="false" />
+          <Property Name="Game" Type="int" Nullable="false" />
+          <Property Name="Kolvo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TableGames">
+          <Key>
+            <PropertyRef Name="IDGame" />
+          </Key>
+          <Property Name="IDGame" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Kolvo_players_min" Type="int" Nullable="false" />
+          <Property Name="Kolvo_players_max" Type="int" Nullable="false" />
+          <Property Name="Age_players" Type="int" Nullable="false" />
+          <Property Name="Producer" Type="int" Nullable="false" />
+          <Property Name="Genre" Type="int" />
+          <Property Name="Cost" Type="int" Nullable="false" />
+          <Property Name="Picture" Type="image" />
+        </EntityType>
+        <Association Name="FK_Logins_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Logins" Type="Self.Logins" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="IDEmp" />
+            </Principal>
+            <Dependent Role="Logins">
+              <PropertyRef Name="IDe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Logins_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Logins" Type="Self.Logins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Logins">
+              <PropertyRef Name="IDRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Contacts">
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="IdStore" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Store" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="IDEmp" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_TableGames">
+          <End Role="TableGames" Type="Self.TableGames" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TableGames">
+              <PropertyRef Name="IDGame" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Storage_Contacts">
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="1" />
+          <End Role="Storage" Type="Self.Storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="IdStore" />
+            </Principal>
+            <Dependent Role="Storage">
+              <PropertyRef Name="Store" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Storage_TableGames">
+          <End Role="TableGames" Type="Self.TableGames" Multiplicity="1" />
+          <End Role="Storage" Type="Self.Storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TableGames">
+              <PropertyRef Name="IDGame" />
+            </Principal>
+            <Dependent Role="Storage">
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableGames_Genres">
+          <End Role="Genres" Type="Self.Genres" Multiplicity="0..1" />
+          <End Role="TableGames" Type="Self.TableGames" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genres">
+              <PropertyRef Name="IDGenre" />
+            </Principal>
+            <Dependent Role="TableGames">
+              <PropertyRef Name="Genre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableGames_Producers">
+          <End Role="Producers" Type="Self.Producers" Multiplicity="1" />
+          <End Role="TableGames" Type="Self.TableGames" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producers">
+              <PropertyRef Name="IdProducer" />
+            </Principal>
+            <Dependent Role="TableGames">
+              <PropertyRef Name="Producer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genres" EntityType="Self.Genres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logins" EntityType="Self.Logins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producers" EntityType="Self.Producers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TableGames" EntityType="Self.TableGames" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Orders].[Id] AS [Id], 
+    [Orders].[Employee] AS [Employee], 
+    [Orders].[Store] AS [Store], 
+    [Orders].[Game] AS [Game], 
+    [Orders].[Kolvo] AS [Kolvo], 
+    [Orders].[CostS] AS [CostS]
+    FROM [dbo].[Orders] AS [Orders]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Storage" EntityType="Self.Storage" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Storage].[IDStorage] AS [IDStorage], 
+    [Storage].[Store] AS [Store], 
+    [Storage].[Game] AS [Game], 
+    [Storage].[Kolvo] AS [Kolvo]
+    FROM [dbo].[Storage] AS [Storage]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Logins_Employees" Association="Self.FK_Logins_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Logins" EntitySet="Logins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Logins_Roles" Association="Self.FK_Logins_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Logins" EntitySet="Logins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Contacts" Association="Self.FK_Orders_Contacts">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Employees" Association="Self.FK_Orders_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_TableGames" Association="Self.FK_Orders_TableGames">
+            <End Role="TableGames" EntitySet="TableGames" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Storage_Contacts" Association="Self.FK_Storage_Contacts">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="Storage" EntitySet="Storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Storage_TableGames" Association="Self.FK_Storage_TableGames">
+            <End Role="TableGames" EntitySet="TableGames" />
+            <End Role="Storage" EntitySet="Storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableGames_Genres" Association="Self.FK_TableGames_Genres">
+            <End Role="Genres" EntitySet="Genres" />
+            <End Role="TableGames" EntitySet="TableGames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableGames_Producers" Association="Self.FK_TableGames_Producers">
+            <End Role="Producers" EntitySet="Producers" />
+            <End Role="TableGames" EntitySet="TableGames" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contacts" EntityType="Model.Contacts" />
+          <EntitySet Name="Employees" EntityType="Model.Employees" />
+          <EntitySet Name="Genres" EntityType="Model.Genres" />
+          <EntitySet Name="Logins" EntityType="Model.Logins" />
+          <EntitySet Name="Producers" EntityType="Model.Producers" />
+          <EntitySet Name="Roles" EntityType="Model.Roles" />
+          <EntitySet Name="sysdiagrams" EntityType="Model.sysdiagrams" />
+          <EntitySet Name="TableGames" EntityType="Model.TableGames" />
+          <EntitySet Name="Orders" EntityType="Model.Orders" />
+          <EntitySet Name="Storage" EntityType="Model.Storage" />
+          <AssociationSet Name="FK_Orders_Contacts" Association="Model.FK_Orders_Contacts">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Storage_Contacts" Association="Model.FK_Storage_Contacts">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="Storage" EntitySet="Storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Logins_Employees" Association="Model.FK_Logins_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Logins" EntitySet="Logins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Employees" Association="Model.FK_Orders_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableGames_Genres" Association="Model.FK_TableGames_Genres">
+            <End Role="Genres" EntitySet="Genres" />
+            <End Role="TableGames" EntitySet="TableGames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Logins_Roles" Association="Model.FK_Logins_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Logins" EntitySet="Logins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableGames_Producers" Association="Model.FK_TableGames_Producers">
+            <End Role="Producers" EntitySet="Producers" />
+            <End Role="TableGames" EntitySet="TableGames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_TableGames" Association="Model.FK_Orders_TableGames">
+            <End Role="TableGames" EntitySet="TableGames" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Storage_TableGames" Association="Model.FK_Storage_TableGames">
+            <End Role="TableGames" EntitySet="TableGames" />
+            <End Role="Storage" EntitySet="Storage" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Contacts">
+          <Key>
+            <PropertyRef Name="IdStore" />
+          </Key>
+          <Property Name="IdStore" Type="Int32" Nullable="false" />
+          <Property Name="Adress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="Model.FK_Orders_Contacts" FromRole="Contacts" ToRole="Orders" />
+          <NavigationProperty Name="Storage" Relationship="Model.FK_Storage_Contacts" FromRole="Contacts" ToRole="Storage" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="IDEmp" />
+          </Key>
+          <Property Name="IDEmp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Second_Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneE" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="Seria_Passport" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="Nomer_Passport" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="Store" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Logins" Relationship="Model.FK_Logins_Employees" FromRole="Employees" ToRole="Logins" />
+          <NavigationProperty Name="Orders" Relationship="Model.FK_Orders_Employees" FromRole="Employees" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Genres">
+          <Key>
+            <PropertyRef Name="IDGenre" />
+          </Key>
+          <Property Name="IDGenre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Genre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TableGames" Relationship="Model.FK_TableGames_Genres" FromRole="Genres" ToRole="TableGames" />
+        </EntityType>
+        <EntityType Name="Logins">
+          <Key>
+            <PropertyRef Name="IDe" />
+          </Key>
+          <Property Name="IDe" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="Int32" Nullable="false" />
+          <Property Name="IDRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Model.FK_Logins_Employees" FromRole="Logins" ToRole="Employees" />
+          <NavigationProperty Name="Roles" Relationship="Model.FK_Logins_Roles" FromRole="Logins" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="Producers">
+          <Key>
+            <PropertyRef Name="IdProducer" />
+          </Key>
+          <Property Name="IdProducer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Producer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TableGames" Relationship="Model.FK_TableGames_Producers" FromRole="Producers" ToRole="TableGames" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Logins" Relationship="Model.FK_Logins_Roles" FromRole="Roles" ToRole="Logins" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TableGames">
+          <Key>
+            <PropertyRef Name="IDGame" />
+          </Key>
+          <Property Name="IDGame" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Kolvo_players_min" Type="Int32" Nullable="false" />
+          <Property Name="Kolvo_players_max" Type="Int32" Nullable="false" />
+          <Property Name="Age_players" Type="Int32" Nullable="false" />
+          <Property Name="Producer" Type="Int32" Nullable="false" />
+          <Property Name="Genre" Type="Int32" />
+          <Property Name="Cost" Type="Int32" Nullable="false" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Genres" Relationship="Model.FK_TableGames_Genres" FromRole="TableGames" ToRole="Genres" />
+          <NavigationProperty Name="Producers" Relationship="Model.FK_TableGames_Producers" FromRole="TableGames" ToRole="Producers" />
+          <NavigationProperty Name="Orders" Relationship="Model.FK_Orders_TableGames" FromRole="TableGames" ToRole="Orders" />
+          <NavigationProperty Name="Storage" Relationship="Model.FK_Storage_TableGames" FromRole="TableGames" ToRole="Storage" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Employee" />
+            <PropertyRef Name="Store" />
+            <PropertyRef Name="Game" />
+            <PropertyRef Name="Kolvo" />
+            <PropertyRef Name="CostS" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Employee" Type="Int32" Nullable="false" />
+          <Property Name="Store" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Int32" Nullable="false" />
+          <Property Name="Kolvo" Type="Int32" Nullable="false" />
+          <Property Name="CostS" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Contacts" Relationship="Model.FK_Orders_Contacts" FromRole="Orders" ToRole="Contacts" />
+          <NavigationProperty Name="Employees" Relationship="Model.FK_Orders_Employees" FromRole="Orders" ToRole="Employees" />
+          <NavigationProperty Name="TableGames" Relationship="Model.FK_Orders_TableGames" FromRole="Orders" ToRole="TableGames" />
+        </EntityType>
+        <EntityType Name="Storage">
+          <Key>
+            <PropertyRef Name="IDStorage" />
+            <PropertyRef Name="Store" />
+            <PropertyRef Name="Game" />
+            <PropertyRef Name="Kolvo" />
+          </Key>
+          <Property Name="IDStorage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Store" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Int32" Nullable="false" />
+          <Property Name="Kolvo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Contacts" Relationship="Model.FK_Storage_Contacts" FromRole="Storage" ToRole="Contacts" />
+          <NavigationProperty Name="TableGames" Relationship="Model.FK_Storage_TableGames" FromRole="Storage" ToRole="TableGames" />
+        </EntityType>
+        <Association Name="FK_Orders_Contacts">
+          <End Type="Model.Contacts" Role="Contacts" Multiplicity="1" />
+          <End Type="Model.Orders" Role="Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="IdStore" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Store" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Storage_Contacts">
+          <End Type="Model.Contacts" Role="Contacts" Multiplicity="1" />
+          <End Type="Model.Storage" Role="Storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="IdStore" />
+            </Principal>
+            <Dependent Role="Storage">
+              <PropertyRef Name="Store" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Logins_Employees">
+          <End Type="Model.Employees" Role="Employees" Multiplicity="1" />
+          <End Type="Model.Logins" Role="Logins" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="IDEmp" />
+            </Principal>
+            <Dependent Role="Logins">
+              <PropertyRef Name="IDe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Employees">
+          <End Type="Model.Employees" Role="Employees" Multiplicity="1" />
+          <End Type="Model.Orders" Role="Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="IDEmp" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableGames_Genres">
+          <End Type="Model.Genres" Role="Genres" Multiplicity="0..1" />
+          <End Type="Model.TableGames" Role="TableGames" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genres">
+              <PropertyRef Name="IDGenre" />
+            </Principal>
+            <Dependent Role="TableGames">
+              <PropertyRef Name="Genre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Logins_Roles">
+          <End Type="Model.Roles" Role="Roles" Multiplicity="1" />
+          <End Type="Model.Logins" Role="Logins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Logins">
+              <PropertyRef Name="IDRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableGames_Producers">
+          <End Type="Model.Producers" Role="Producers" Multiplicity="1" />
+          <End Type="Model.TableGames" Role="TableGames" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producers">
+              <PropertyRef Name="IdProducer" />
+            </Principal>
+            <Dependent Role="TableGames">
+              <PropertyRef Name="Producer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_TableGames">
+          <End Type="Model.TableGames" Role="TableGames" Multiplicity="1" />
+          <End Type="Model.Orders" Role="Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TableGames">
+              <PropertyRef Name="IDGame" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Storage_TableGames">
+          <End Type="Model.TableGames" Role="TableGames" Multiplicity="1" />
+          <End Type="Model.Storage" Role="Storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TableGames">
+              <PropertyRef Name="IDGame" />
+            </Principal>
+            <Dependent Role="Storage">
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="Model.Contacts">
+              <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="IdStore" ColumnName="IdStore" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="Model.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="Store" ColumnName="Store" />
+                <ScalarProperty Name="Nomer_Passport" ColumnName="Nomer_Passport" />
+                <ScalarProperty Name="Seria_Passport" ColumnName="Seria_Passport" />
+                <ScalarProperty Name="PhoneE" ColumnName="PhoneE" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Second_Name" ColumnName="Second_Name" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="IDEmp" ColumnName="IDEmp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genres">
+            <EntityTypeMapping TypeName="Model.Genres">
+              <MappingFragment StoreEntitySet="Genres">
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="IDGenre" ColumnName="IDGenre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="Model.Logins">
+              <MappingFragment StoreEntitySet="Logins">
+                <ScalarProperty Name="IDRole" ColumnName="IDRole" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="IDe" ColumnName="IDe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producers">
+            <EntityTypeMapping TypeName="Model.Producers">
+              <MappingFragment StoreEntitySet="Producers">
+                <ScalarProperty Name="Producer" ColumnName="Producer" />
+                <ScalarProperty Name="IdProducer" ColumnName="IdProducer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="Model.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TableGames">
+            <EntityTypeMapping TypeName="Model.TableGames">
+              <MappingFragment StoreEntitySet="TableGames">
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="Producer" ColumnName="Producer" />
+                <ScalarProperty Name="Age_players" ColumnName="Age_players" />
+                <ScalarProperty Name="Kolvo_players_max" ColumnName="Kolvo_players_max" />
+                <ScalarProperty Name="Kolvo_players_min" ColumnName="Kolvo_players_min" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IDGame" ColumnName="IDGame" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="Model.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="CostS" ColumnName="CostS" />
+                <ScalarProperty Name="Kolvo" ColumnName="Kolvo" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Store" ColumnName="Store" />
+                <ScalarProperty Name="Employee" ColumnName="Employee" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Storage">
+            <EntityTypeMapping TypeName="Model.Storage">
+              <MappingFragment StoreEntitySet="Storage">
+                <ScalarProperty Name="Kolvo" ColumnName="Kolvo" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Store" ColumnName="Store" />
+                <ScalarProperty Name="IDStorage" ColumnName="IDStorage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

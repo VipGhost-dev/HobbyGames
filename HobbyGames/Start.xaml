@@ -1,0 +1,20 @@
+﻿<Page x:Class="HobbyGames.Start"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HobbyGames"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Start">
+
+    <Grid>
+        <Label x:Name="PasswordText" Content="Пароль" Margin="298,231,412,0" FontFamily="Impact" FontSize="20" VerticalAlignment="Top"/>
+        <Label x:Name="Logintext" Content="Логин" Margin="298,164,412,0" FontFamily="Impact" FontSize="20" VerticalAlignment="Top"/>
+        <PasswordBox x:Name="PasswordTxt" HorizontalAlignment="Center" Margin="0,265,0,0" VerticalAlignment="Top" Width="180" Height="27"/>
+        <Button x:Name="LogON" Content="Авторизоваться" HorizontalAlignment="Left" Margin="175,331,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="39" Width="176" Click="LogON_Click"/>
+        <Button x:Name="Reg" Content="Зарегистрироватьcя" HorizontalAlignment="Left" Margin="442,331,0,0" VerticalAlignment="Top" Height="39" Width="181" Click="Reg_Click"/>
+        <TextBox x:Name="LoginTxt" HorizontalAlignment="Center" Margin="0,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="27"/>
+        <Image HorizontalAlignment="Center" Height="121" Margin="0,26,0,0" VerticalAlignment="Top" Width="347" Source="/Resources/logohg.png"/>
+    </Grid>
+</Page>
