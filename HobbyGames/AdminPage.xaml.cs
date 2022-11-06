@@ -34,5 +34,10 @@ namespace HobbyGames
         {
             ClassFrame.Mfrm.GoBack();
         }
+
+        private void ViewOrdersBTN_Click(object sender, RoutedEventArgs e)
+        {
+            ClassFrame.Mfrm.Navigate(new PageVIEWOrders());
+        }
     }
 }

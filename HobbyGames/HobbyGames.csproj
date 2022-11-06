@@ -93,6 +93,9 @@
     <Compile Include="PageEMP.xaml.cs">
       <DependentUpon>PageEMP.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageVIEWOrders.xaml.cs">
+      <DependentUpon>PageVIEWOrders.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageVIEWUsers.xaml.cs">
       <DependentUpon>PageVIEWUsers.xaml</DependentUpon>
     </Compile>
@@ -111,6 +114,7 @@
     <Compile Include="Storage.cs">
       <DependentUpon>DBhg.tt</DependentUpon>
     </Compile>
+    <Compile Include="SvoistvaOrders.cs" />
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>DBhg.tt</DependentUpon>
     </Compile>
@@ -144,6 +148,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PageEMP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageVIEWOrders.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -205,6 +213,7 @@
       <DependentUpon>DBhg.edmx</DependentUpon>
       <LastGenOutput>DBhg.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\defaut.png" />
     <Resource Include="Resources\logohg.png" />
     <Resource Include="logohg.png" />
   </ItemGroup>

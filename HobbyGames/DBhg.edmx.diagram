@@ -7,9 +7,9 @@
       <Diagram DiagramId="43b7205adc5545f48dce9e373ed5386e" Name="Diagram1">
         <EntityTypeShape EntityType="Model.Contacts" Width="1.5" PointX="3" PointY="0.75" />
         <EntityTypeShape EntityType="Model.Employees" Width="1.5" PointX="3" PointY="8.5" />
-        <EntityTypeShape EntityType="Model.Genres" Width="1.5" PointX="0.75" PointY="1.875" />
+        <EntityTypeShape EntityType="Model.Genres" Width="1.5" PointX="0.75" PointY="4.875" />
         <EntityTypeShape EntityType="Model.Logins" Width="1.5" PointX="5.25" PointY="9" />
-        <EntityTypeShape EntityType="Model.Producers" Width="1.5" PointX="0.75" PointY="4.875" />
+        <EntityTypeShape EntityType="Model.Producers" Width="1.5" PointX="0.75" PointY="1.875" />
         <EntityTypeShape EntityType="Model.Roles" Width="1.5" PointX="3" PointY="13.25" />
         <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="7.75" PointY="8.5" />
         <EntityTypeShape EntityType="Model.TableGames" Width="1.5" PointX="3" PointY="3.875" />
