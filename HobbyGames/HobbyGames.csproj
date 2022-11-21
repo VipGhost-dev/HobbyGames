@@ -65,11 +65,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AdminPage.xaml.cs">
+    <Compile Include="Pages\PageADDOrders.xaml.cs">
+      <DependentUpon>PageADDOrders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ClassBase.cs" />
-    <Compile Include="ClassFrame.cs" />
+    <Compile Include="Classes\ClassBase.cs" />
+    <Compile Include="Classes\ClassFrame.cs" />
     <Compile Include="Contacts.cs">
       <DependentUpon>DBhg.tt</DependentUpon>
     </Compile>
@@ -90,38 +93,42 @@
     <Compile Include="Orders.cs">
       <DependentUpon>DBhg.tt</DependentUpon>
     </Compile>
-    <Compile Include="PageEMP.xaml.cs">
+    <Compile Include="Pages\PageEMP.xaml.cs">
       <DependentUpon>PageEMP.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PageVIEWOrders.xaml.cs">
+    <Compile Include="Pages\PageVIEWOrders.xaml.cs">
       <DependentUpon>PageVIEWOrders.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PageVIEWUsers.xaml.cs">
+    <Compile Include="Pages\PageVIEWUsers.xaml.cs">
       <DependentUpon>PageVIEWUsers.xaml</DependentUpon>
     </Compile>
     <Compile Include="Producers.cs">
       <DependentUpon>DBhg.tt</DependentUpon>
     </Compile>
-    <Compile Include="RegisterPage.xaml.cs">
+    <Compile Include="Pages\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Roles.cs">
       <DependentUpon>DBhg.tt</DependentUpon>
     </Compile>
-    <Compile Include="Start.xaml.cs">
+    <Compile Include="Pages\Start.xaml.cs">
       <DependentUpon>Start.xaml</DependentUpon>
     </Compile>
     <Compile Include="Storage.cs">
       <DependentUpon>DBhg.tt</DependentUpon>
     </Compile>
-    <Compile Include="SvoistvaOrders.cs" />
+    <Compile Include="Classes\SvoistvaOrders.cs" />
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>DBhg.tt</DependentUpon>
     </Compile>
     <Compile Include="TableGames.cs">
       <DependentUpon>DBhg.tt</DependentUpon>
     </Compile>
-    <Page Include="AdminPage.xaml">
+    <Page Include="Pages\PageADDOrders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdminPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -147,23 +154,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="PageEMP.xaml">
+    <Page Include="Pages\PageEMP.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PageVIEWOrders.xaml">
+    <Page Include="Pages\PageVIEWOrders.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PageVIEWUsers.xaml">
+    <Page Include="Pages\PageVIEWUsers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RegisterPage.xaml">
+    <Page Include="Pages\RegisterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Start.xaml">
+    <Page Include="Pages\Start.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -185,6 +192,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EntityDeploy Include="DBhg.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -213,9 +221,8 @@
       <DependentUpon>DBhg.edmx</DependentUpon>
       <LastGenOutput>DBhg.cs</LastGenOutput>
     </Content>
-    <None Include="Resources\defaut.png" />
+    <Resource Include="Resources\gallery-block.png" />
     <Resource Include="Resources\logohg.png" />
-    <Resource Include="logohg.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

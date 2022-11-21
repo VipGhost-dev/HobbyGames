@@ -43,16 +43,9 @@
           <Property Name="Password" Type="int" Nullable="false" />
           <Property Name="IDRole" Type="int" Nullable="false" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "41П_МДК01.01_Ледров.dbo.Orders" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="Orders">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="Employee" />
-            <PropertyRef Name="Store" />
-            <PropertyRef Name="Game" />
-            <PropertyRef Name="Kolvo" />
-            <PropertyRef Name="CostS" />
           </Key>
           <Property Name="Id" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Employee" Type="int" Nullable="false" />
@@ -75,14 +68,9 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Role" Type="nvarchar" MaxLength="30" Nullable="false" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "41П_МДК01.01_Ледров.dbo.Storage" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="Storage">
           <Key>
             <PropertyRef Name="IDStorage" />
-            <PropertyRef Name="Store" />
-            <PropertyRef Name="Game" />
-            <PropertyRef Name="Kolvo" />
           </Key>
           <Property Name="IDStorage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Store" Type="int" Nullable="false" />
@@ -111,7 +99,7 @@
           <Property Name="Producer" Type="int" Nullable="false" />
           <Property Name="Genre" Type="int" />
           <Property Name="Cost" Type="int" Nullable="false" />
-          <Property Name="Picture" Type="image" />
+          <Property Name="Picture" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_Logins_Employees">
           <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
@@ -226,28 +214,12 @@
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Genres" EntityType="Self.Genres" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Logins" EntityType="Self.Logins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producers" EntityType="Self.Producers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Storage" EntityType="Self.Storage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TableGames" EntityType="Self.TableGames" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Orders" EntityType="Self.Orders" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Orders].[Id] AS [Id], 
-    [Orders].[Employee] AS [Employee], 
-    [Orders].[Store] AS [Store], 
-    [Orders].[Game] AS [Game], 
-    [Orders].[Kolvo] AS [Kolvo], 
-    [Orders].[CostS] AS [CostS]
-    FROM [dbo].[Orders] AS [Orders]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Storage" EntityType="Self.Storage" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Storage].[IDStorage] AS [IDStorage], 
-    [Storage].[Store] AS [Store], 
-    [Storage].[Game] AS [Game], 
-    [Storage].[Kolvo] AS [Kolvo]
-    FROM [dbo].[Storage] AS [Storage]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Logins_Employees" Association="Self.FK_Logins_Employees">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="Logins" EntitySet="Logins" />
@@ -294,12 +266,12 @@
           <EntitySet Name="Employees" EntityType="Model.Employees" />
           <EntitySet Name="Genres" EntityType="Model.Genres" />
           <EntitySet Name="Logins" EntityType="Model.Logins" />
+          <EntitySet Name="Orders" EntityType="Model.Orders" />
           <EntitySet Name="Producers" EntityType="Model.Producers" />
           <EntitySet Name="Roles" EntityType="Model.Roles" />
+          <EntitySet Name="Storage" EntityType="Model.Storage" />
           <EntitySet Name="sysdiagrams" EntityType="Model.sysdiagrams" />
           <EntitySet Name="TableGames" EntityType="Model.TableGames" />
-          <EntitySet Name="Orders" EntityType="Model.Orders" />
-          <EntitySet Name="Storage" EntityType="Model.Storage" />
           <AssociationSet Name="FK_Orders_Contacts" Association="Model.FK_Orders_Contacts">
             <End Role="Contacts" EntitySet="Contacts" />
             <End Role="Orders" EntitySet="Orders" />
@@ -324,13 +296,13 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Logins" EntitySet="Logins" />
           </AssociationSet>
-          <AssociationSet Name="FK_TableGames_Producers" Association="Model.FK_TableGames_Producers">
-            <End Role="Producers" EntitySet="Producers" />
-            <End Role="TableGames" EntitySet="TableGames" />
-          </AssociationSet>
           <AssociationSet Name="FK_Orders_TableGames" Association="Model.FK_Orders_TableGames">
             <End Role="TableGames" EntitySet="TableGames" />
             <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableGames_Producers" Association="Model.FK_TableGames_Producers">
+            <End Role="Producers" EntitySet="Producers" />
+            <End Role="TableGames" EntitySet="TableGames" />
           </AssociationSet>
           <AssociationSet Name="FK_Storage_TableGames" Association="Model.FK_Storage_TableGames">
             <End Role="TableGames" EntitySet="TableGames" />
@@ -382,6 +354,20 @@
           <NavigationProperty Name="Employees" Relationship="Model.FK_Logins_Employees" FromRole="Logins" ToRole="Employees" />
           <NavigationProperty Name="Roles" Relationship="Model.FK_Logins_Roles" FromRole="Logins" ToRole="Roles" />
         </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Employee" Type="Int32" Nullable="false" />
+          <Property Name="Store" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Int32" Nullable="false" />
+          <Property Name="Kolvo" Type="Int32" Nullable="false" />
+          <Property Name="CostS" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Contacts" Relationship="Model.FK_Orders_Contacts" FromRole="Orders" ToRole="Contacts" />
+          <NavigationProperty Name="Employees" Relationship="Model.FK_Orders_Employees" FromRole="Orders" ToRole="Employees" />
+          <NavigationProperty Name="TableGames" Relationship="Model.FK_Orders_TableGames" FromRole="Orders" ToRole="TableGames" />
+        </EntityType>
         <EntityType Name="Producers">
           <Key>
             <PropertyRef Name="IdProducer" />
@@ -397,6 +383,17 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Role" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Logins" Relationship="Model.FK_Logins_Roles" FromRole="Roles" ToRole="Logins" />
+        </EntityType>
+        <EntityType Name="Storage">
+          <Key>
+            <PropertyRef Name="IDStorage" />
+          </Key>
+          <Property Name="IDStorage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Store" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Int32" Nullable="false" />
+          <Property Name="Kolvo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Contacts" Relationship="Model.FK_Storage_Contacts" FromRole="Storage" ToRole="Contacts" />
+          <NavigationProperty Name="TableGames" Relationship="Model.FK_Storage_TableGames" FromRole="Storage" ToRole="TableGames" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -422,42 +419,9 @@
           <Property Name="Cost" Type="Int32" Nullable="false" />
           <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Genres" Relationship="Model.FK_TableGames_Genres" FromRole="TableGames" ToRole="Genres" />
-          <NavigationProperty Name="Producers" Relationship="Model.FK_TableGames_Producers" FromRole="TableGames" ToRole="Producers" />
           <NavigationProperty Name="Orders" Relationship="Model.FK_Orders_TableGames" FromRole="TableGames" ToRole="Orders" />
+          <NavigationProperty Name="Producers" Relationship="Model.FK_TableGames_Producers" FromRole="TableGames" ToRole="Producers" />
           <NavigationProperty Name="Storage" Relationship="Model.FK_Storage_TableGames" FromRole="TableGames" ToRole="Storage" />
-        </EntityType>
-        <EntityType Name="Orders">
-          <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="Employee" />
-            <PropertyRef Name="Store" />
-            <PropertyRef Name="Game" />
-            <PropertyRef Name="Kolvo" />
-            <PropertyRef Name="CostS" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Employee" Type="Int32" Nullable="false" />
-          <Property Name="Store" Type="Int32" Nullable="false" />
-          <Property Name="Game" Type="Int32" Nullable="false" />
-          <Property Name="Kolvo" Type="Int32" Nullable="false" />
-          <Property Name="CostS" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Contacts" Relationship="Model.FK_Orders_Contacts" FromRole="Orders" ToRole="Contacts" />
-          <NavigationProperty Name="Employees" Relationship="Model.FK_Orders_Employees" FromRole="Orders" ToRole="Employees" />
-          <NavigationProperty Name="TableGames" Relationship="Model.FK_Orders_TableGames" FromRole="Orders" ToRole="TableGames" />
-        </EntityType>
-        <EntityType Name="Storage">
-          <Key>
-            <PropertyRef Name="IDStorage" />
-            <PropertyRef Name="Store" />
-            <PropertyRef Name="Game" />
-            <PropertyRef Name="Kolvo" />
-          </Key>
-          <Property Name="IDStorage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Store" Type="Int32" Nullable="false" />
-          <Property Name="Game" Type="Int32" Nullable="false" />
-          <Property Name="Kolvo" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Contacts" Relationship="Model.FK_Storage_Contacts" FromRole="Storage" ToRole="Contacts" />
-          <NavigationProperty Name="TableGames" Relationship="Model.FK_Storage_TableGames" FromRole="Storage" ToRole="TableGames" />
         </EntityType>
         <Association Name="FK_Orders_Contacts">
           <End Type="Model.Contacts" Role="Contacts" Multiplicity="1" />
@@ -531,18 +495,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TableGames_Producers">
-          <End Type="Model.Producers" Role="Producers" Multiplicity="1" />
-          <End Type="Model.TableGames" Role="TableGames" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Producers">
-              <PropertyRef Name="IdProducer" />
-            </Principal>
-            <Dependent Role="TableGames">
-              <PropertyRef Name="Producer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Orders_TableGames">
           <End Type="Model.TableGames" Role="TableGames" Multiplicity="1" />
           <End Type="Model.Orders" Role="Orders" Multiplicity="*" />
@@ -552,6 +504,18 @@
             </Principal>
             <Dependent Role="Orders">
               <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableGames_Producers">
+          <End Type="Model.Producers" Role="Producers" Multiplicity="1" />
+          <End Type="Model.TableGames" Role="TableGames" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producers">
+              <PropertyRef Name="IdProducer" />
+            </Principal>
+            <Dependent Role="TableGames">
+              <PropertyRef Name="Producer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -615,6 +579,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="Model.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="CostS" ColumnName="CostS" />
+                <ScalarProperty Name="Kolvo" ColumnName="Kolvo" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Store" ColumnName="Store" />
+                <ScalarProperty Name="Employee" ColumnName="Employee" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Producers">
             <EntityTypeMapping TypeName="Model.Producers">
               <MappingFragment StoreEntitySet="Producers">
@@ -628,6 +604,16 @@
               <MappingFragment StoreEntitySet="Roles">
                 <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Storage">
+            <EntityTypeMapping TypeName="Model.Storage">
+              <MappingFragment StoreEntitySet="Storage">
+                <ScalarProperty Name="Kolvo" ColumnName="Kolvo" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Store" ColumnName="Store" />
+                <ScalarProperty Name="IDStorage" ColumnName="IDStorage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -654,28 +640,6 @@
                 <ScalarProperty Name="Kolvo_players_min" ColumnName="Kolvo_players_min" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IDGame" ColumnName="IDGame" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="Model.Orders">
-              <MappingFragment StoreEntitySet="Orders">
-                <ScalarProperty Name="CostS" ColumnName="CostS" />
-                <ScalarProperty Name="Kolvo" ColumnName="Kolvo" />
-                <ScalarProperty Name="Game" ColumnName="Game" />
-                <ScalarProperty Name="Store" ColumnName="Store" />
-                <ScalarProperty Name="Employee" ColumnName="Employee" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Storage">
-            <EntityTypeMapping TypeName="Model.Storage">
-              <MappingFragment StoreEntitySet="Storage">
-                <ScalarProperty Name="Kolvo" ColumnName="Kolvo" />
-                <ScalarProperty Name="Game" ColumnName="Game" />
-                <ScalarProperty Name="Store" ColumnName="Store" />
-                <ScalarProperty Name="IDStorage" ColumnName="IDStorage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -8,6 +8,10 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PageVIEWOrders">
 
+    <Page.Resources>
+        <BitmapImage x:Key="defaultImage" UriSource="/Resources/gallery-block.png"/>
+    </Page.Resources>
+    
     <Grid>
         <Label x:Name="AdminMenuText" Content="Продажи" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24" FontFamily="Impact" Margin="0,22,0,0"/>
         <ListView Name="listOrders" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,66,0,58">
@@ -19,7 +23,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Padding="5" CornerRadius="5" BorderThickness="1" BorderBrush="Yellow">
-                        <Grid Name="gridMain" Width="500" Height="300" Background="{Binding Genrecolor}">
+                        <Grid Name="gridMain" Width="500" Height="400" Background="{Binding Genrecolor}">
                             <StackPanel>
                                 <TextBlock Text="{Binding Id}"/>
                                 <GroupBox Header="Название игры">
@@ -37,8 +41,7 @@
                                 <GroupBox Header="Сумма">
                                     <TextBlock Text="{Binding Coststr}"></TextBlock>
                                 </GroupBox>
-                                <!--<Image Width="100" Height="100" Source="{Binding Picture, TargetNullValue={}}"/>
-                                -->
+                                <Image Width="200" Height="200" Source="{Binding TableGames.Picture, TargetNullValue={StaticResource defaultImage}}"/>
                                 <!--<Button Uid="{Binding idCat}" Content="Удалить" Click="Button_Click"></Button>
                                 <Button Uid="{Binding idCat}" Content="Редактировать" Name="btnupdate" Click="btnupdate_Click"></Button>-->
                             </StackPanel>
@@ -51,6 +54,8 @@
             <Label x:Name="profitText" Content="Прибыль:" FontSize="24" FontFamily="Impact" Height="38"/>
             <TextBlock x:Name="ProfitBlock" Height="24"  FontSize="24" FontFamily="Impact" Width="132" Loaded="ProfitBlock_Loaded"/>
         </StackPanel>
+        <Button x:Name="BacOrdersBtn" Content="Назад" Margin="32,0,0,8" Height="39" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="181" Click="BacOrdersBtn_Click"/>
+        <Button x:Name="AddOrdersBtn" Content="Добавить" Margin="219,0,0,8" Height="39" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="181" Click="AddOrdersBtn_Click"/>
 
     </Grid>
 </Page>

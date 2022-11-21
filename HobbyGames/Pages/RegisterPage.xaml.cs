@@ -32,7 +32,7 @@ namespace HobbyGames
 
         private void RegisterBTN_Click(object sender, RoutedEventArgs e)
         {
-            if (LoginBOX.Text != "" && PasswrodBOX.Password != "" && GenderBox.SelectedIndex != null && NameBox.Text != "" && SecondNameBox.Text != "" && PatronymicBox.Text != "" && PhoneBox.Text != "" && SeriaBox.Text != "" && NomerBox.Text != "" && StoreBox.SelectedIndex != null)
+            if (LoginBOX.Text != "" && PasswrodBOX.Password != "" && GenderBox.SelectedIndex != -1 && NameBox.Text != "" && SecondNameBox.Text != "" && PatronymicBox.Text != "" && PhoneBox.Text != "" && SeriaBox.Text != "" && NomerBox.Text != "" && StoreBox.SelectedIndex != -1)
             {
                 Logins loginsUsers = ClassBase.BASE.Logins.FirstOrDefault(z => z.Login == LoginBOX.Text);
                

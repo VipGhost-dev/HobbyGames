@@ -31,5 +31,15 @@ namespace HobbyGames
             int profit = ClassBase.BASE.Orders.Sum(z => z.CostS);
             ProfitBlock.Text = profit.ToString();
         }
+
+        private void BacOrdersBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ClassFrame.Mfrm.GoBack();
+        }
+
+        private void AddOrdersBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ClassFrame.Mfrm.Navigate(new PageADDOrders());
+        }
     }
 }

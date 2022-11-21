@@ -29,11 +29,11 @@ namespace HobbyGames
         public virtual DbSet<Employees> Employees { get; set; }
         public virtual DbSet<Genres> Genres { get; set; }
         public virtual DbSet<Logins> Logins { get; set; }
+        public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<Producers> Producers { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<Storage> Storage { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TableGames> TableGames { get; set; }
-        public virtual DbSet<Orders> Orders { get; set; }
-        public virtual DbSet<Storage> Storage { get; set; }
     }
 }
