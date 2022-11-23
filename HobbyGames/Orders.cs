@@ -14,7 +14,7 @@ namespace HobbyGames
     
     public partial class Orders
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public int Employee { get; set; }
         public int Store { get; set; }
         public int Game { get; set; }

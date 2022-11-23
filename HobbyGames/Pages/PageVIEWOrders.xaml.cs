@@ -24,6 +24,7 @@ namespace HobbyGames
         {
             InitializeComponent();
             listOrders.ItemsSource = ClassBase.BASE.Orders.ToList();
+            listOrders.SelectedValuePath = "Id";
         }
 
         private void ProfitBlock_Loaded(object sender, RoutedEventArgs e)
@@ -34,12 +35,19 @@ namespace HobbyGames
 
         private void BacOrdersBtn_Click(object sender, RoutedEventArgs e)
         {
-            ClassFrame.Mfrm.GoBack();
+            ClassFrame.Mfrm.Navigate(new AdminPage());
         }
 
         private void AddOrdersBtn_Click(object sender, RoutedEventArgs e)
         {
             ClassFrame.Mfrm.Navigate(new PageADDOrders());
+        }
+
+        private void listOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = Convert.ToInt32(listOrders.SelectedValue);
+            Orders order = ClassBase.BASE.Orders.FirstOrDefault(x => x.Id == index);
+            ClassFrame.Mfrm.Navigate(new PageADDOrders(order));
         }
     }
 }

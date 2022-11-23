@@ -41,7 +41,7 @@ namespace HobbyGames
         {
             get
             {
-                return Employees.First_Name + " " + Employees.Second_Name + " " + Employees.Patronymic;
+                return Employees.Second_Name + " " + Employees.First_Name + " " + Employees.Patronymic;
             }
         }
     }

@@ -12,16 +12,16 @@
         <Image x:Name="ImageGame" HorizontalAlignment="Left" Height="100" Margin="53,46,0,0" VerticalAlignment="Top" Width="100"  Source="/Resources/gallery-block.png"/>
         <ComboBox x:Name="GameBox" HorizontalAlignment="Left" Margin="199,54,0,0" VerticalAlignment="Top" Width="120" Height="22" SelectionChanged="GameBox_SelectionChanged"/>
         <Button x:Name="AddGameBtn" Content="+" HorizontalAlignment="Left" Margin="330,51,0,0" VerticalAlignment="Top" Style="{StaticResource AddGamePlus}" Cursor="Hand" Width="14" Height="22"/>
-        <TextBox HorizontalAlignment="Left" Margin="199,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="22"/>
+        <TextBox x:Name="KolvoTxt" HorizontalAlignment="Left" Margin="199,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="22"/>
         <Label Content="Игра" HorizontalAlignment="Left" Margin="194,20,0,0" VerticalAlignment="Top" FontFamily="Impact" FontSize="20"/>
         <Label Content="Количество" HorizontalAlignment="Left" Margin="194,83,0,0" VerticalAlignment="Top" FontFamily="Impact" FontSize="20"/>
         <Label Content="Сотрудник" HorizontalAlignment="Left" Margin="194,144,0,0" VerticalAlignment="Top" FontFamily="Impact" FontSize="20"/>
         <ComboBox x:Name="EmpBox" HorizontalAlignment="Left" Margin="199,183,0,0" VerticalAlignment="Top" Width="120" Height="22"/>
         <ComboBox x:Name="StoreBox" HorizontalAlignment="Left" Margin="414,54,0,0" VerticalAlignment="Top" Width="120" Height="22"/>
         <Label Content="Магазин" HorizontalAlignment="Left" Margin="414,20,0,0" VerticalAlignment="Top" FontFamily="Impact" FontSize="20"/>
-        <Label x:Name="ItogTxt" Content="" HorizontalAlignment="Left" Margin="414,111,0,0" VerticalAlignment="Top" FontFamily="Impact" FontSize="20"/>
-        <Button x:Name="CreateOrderBtn" Content="Создать запись" Margin="399,0,0,305" Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="150" Click="CreateOrderBtn_Click"/>
-        <Button x:Name="BackAddOrders_btn" Content="Назад" Margin="399,0,0,245" Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="150" Click="BackAddOrders_btn_Click"/>
+        <Button x:Name="CreateOrderBtn" Margin="399,110,0,0" Click="CreateOrderBtn_Click" HorizontalAlignment="Left" Width="150" Height="36" VerticalAlignment="Top"/>
+        <Button x:Name="BackAddOrders_btn" Content="Назад" Margin="400,176,0,0" Click="BackAddOrders_btn_Click" Height="36" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150"/>
+        <Button x:Name="DeleteBtn" Content="Удалить" Margin="583,110,0,0" Click="DeleteBtn_Click" HorizontalAlignment="Left" Width="150" Height="36" VerticalAlignment="Top" Visibility="Collapsed"/>
 
     </Grid>
 </Page>

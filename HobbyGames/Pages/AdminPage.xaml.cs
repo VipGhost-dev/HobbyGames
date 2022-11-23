@@ -32,7 +32,7 @@ namespace HobbyGames
 
         private void BackAdminBtn_Click(object sender, RoutedEventArgs e)
         {
-            ClassFrame.Mfrm.GoBack();
+            ClassFrame.Mfrm.Navigate(new Start());
         }
 
         private void ViewOrdersBTN_Click(object sender, RoutedEventArgs e)

@@ -14,7 +14,7 @@
     
     <Grid>
         <Label x:Name="AdminMenuText" Content="Продажи" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24" FontFamily="Impact" Margin="0,22,0,0"/>
-        <ListView Name="listOrders" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,66,0,58">
+        <ListView Name="listOrders" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,66,0,58" SelectionChanged="listOrders_SelectionChanged">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel HorizontalAlignment="Center"></WrapPanel>
@@ -23,7 +23,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Padding="5" CornerRadius="5" BorderThickness="1" BorderBrush="Yellow">
-                        <Grid Name="gridMain" Width="500" Height="400" Background="{Binding Genrecolor}">
+                        <Grid Name="gridMain" Width="500" Height="400" Background="{Binding Genrecolor}" Uid="{Binding Id}">
                             <StackPanel>
                                 <TextBlock Text="{Binding Id}"/>
                                 <GroupBox Header="Название игры">
@@ -36,7 +36,7 @@
                                     <TextBlock  Text="{Binding Contacts.Adress}"></TextBlock>
                                 </GroupBox>
                                 <GroupBox Header="Кол-во">
-                                    <TextBlock  Text="{Binding Kolvo}" ></TextBlock>
+                                    <TextBlock  Text="{Binding Kolvo}"></TextBlock>
                                 </GroupBox>
                                 <GroupBox Header="Сумма">
                                     <TextBlock Text="{Binding Coststr}"></TextBlock>
