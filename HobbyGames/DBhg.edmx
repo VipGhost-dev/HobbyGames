@@ -26,6 +26,7 @@
           <Property Name="Seria_Passport" Type="nvarchar" MaxLength="4" Nullable="false" />
           <Property Name="Nomer_Passport" Type="nvarchar" MaxLength="6" Nullable="false" />
           <Property Name="Store" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Genres">
           <Key>
@@ -332,6 +333,7 @@
           <Property Name="Seria_Passport" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
           <Property Name="Nomer_Passport" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
           <Property Name="Store" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Logins" Relationship="Model.FK_Logins_Employees" FromRole="Employees" ToRole="Logins" />
           <NavigationProperty Name="Orders" Relationship="Model.FK_Orders_Employees" FromRole="Employees" ToRole="Orders" />
         </EntityType>
@@ -549,6 +551,7 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="Model.Employees">
               <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="Store" ColumnName="Store" />
                 <ScalarProperty Name="Nomer_Passport" ColumnName="Nomer_Passport" />
                 <ScalarProperty Name="Seria_Passport" ColumnName="Seria_Passport" />

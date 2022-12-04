@@ -29,6 +29,7 @@ namespace HobbyGames
         public string Seria_Passport { get; set; }
         public string Nomer_Passport { get; set; }
         public int Store { get; set; }
+        public byte[] Photo { get; set; }
     
         public virtual Logins Logins { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

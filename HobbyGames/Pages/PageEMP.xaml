@@ -9,6 +9,14 @@
       Title="PageEMP">
 
     <Grid>
-        
+        <Image x:Name="Photo" HorizontalAlignment="Left" Height="100" Margin="36,45,0,0" VerticalAlignment="Top" Width="100" Source="/Resources/UserNON.png" MouseDown="Photo_MouseDown"/>
+        <TextBlock x:Name="FIO" HorizontalAlignment="Left" Margin="193,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="Gender" HorizontalAlignment="Left" Margin="193,97,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="Phone" HorizontalAlignment="Left" Margin="193,144,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="Pasport" HorizontalAlignment="Left" Margin="193,196,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="StoreBox" HorizontalAlignment="Left" Margin="193,254,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btn_changePersonal" Content="Изменить персональные данные" HorizontalAlignment="Right" Margin="0,0,204,26" VerticalAlignment="Bottom" Click="btn_changePersonal_Click"/>
+        <Button x:Name="btn_changeLogin" Content="Сменить логин и пароль" HorizontalAlignment="Right" Margin="0,0,35,26" VerticalAlignment="Bottom" Click="btn_changeLogin_Click"/>
+
     </Grid>
 </Page>

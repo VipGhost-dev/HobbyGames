@@ -1,0 +1,32 @@
+﻿<Window x:Class="HobbyGames.ChangePersonalData"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HobbyGames"
+        mc:Ignorable="d"
+        Title="ChangePersonalData" Height="450" Width="800">
+    <Grid>
+        <TextBox x:Name="FirstBox" HorizontalAlignment="Left" Margin="129,87,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="SecondBox" HorizontalAlignment="Left" Margin="129,144,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PatronymicBox" HorizontalAlignment="Left" Margin="129,199,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="GenderBox" HorizontalAlignment="Left" Margin="129,257,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="М"/>
+            <ComboBoxItem Content="Ж"/>
+        </ComboBox>
+        <ComboBox x:Name="StoreBox" HorizontalAlignment="Center" Margin="0,257,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PhoneBox" HorizontalAlignment="Center" Margin="0,87,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="SeriaBox" HorizontalAlignment="Center" Margin="0,144,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="NomerBox" HorizontalAlignment="Center" Margin="0,199,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="Имя" HorizontalAlignment="Left" Margin="119,53,0,0" VerticalAlignment="Top" FontFamily="Impact" FontSize="20"/>
+        <Label Content="Фамилия" HorizontalAlignment="Left" Margin="119,110,0,0" VerticalAlignment="Top" FontFamily="Impact" FontSize="20"/>
+        <Label Content="Отчество" HorizontalAlignment="Left" Margin="119,167,0,0" VerticalAlignment="Top" FontFamily="Impact" FontSize="20"/>
+        <Label Content="Пол" HorizontalAlignment="Left" Margin="119,223,0,0" VerticalAlignment="Top" FontFamily="Impact" FontSize="20"/>
+        <Label Content="Телефон" HorizontalAlignment="Left" Margin="330,53,0,0" VerticalAlignment="Top" FontFamily="Impact" FontSize="20"/>
+        <Label Content="Серия паспорта" HorizontalAlignment="Left" Margin="330,110,0,0" VerticalAlignment="Top" FontFamily="Impact" FontSize="20"/>
+        <Label Content="Номер паспорта" HorizontalAlignment="Left" Margin="330,165,0,0" VerticalAlignment="Top" FontFamily="Impact" FontSize="20"/>
+        <Label Content="Магазин" HorizontalAlignment="Left" Margin="330,223,0,0" VerticalAlignment="Top" FontFamily="Impact" FontSize="20"/>
+        <Button x:Name="btn_changePersonalapply" Content="Изменить" HorizontalAlignment="Left" Margin="567,384,0,0" VerticalAlignment="Top" Click="btn_changePersonalapply_Click"/>
+
+    </Grid>
+</Window>

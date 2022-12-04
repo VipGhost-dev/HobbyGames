@@ -25,6 +25,8 @@ namespace HobbyGames
             InitializeComponent();
         }
 
+        public static int idemp;
+
         /// <summary>
         /// Администратор Логин: lied00 Пароль: Asdf123!
         /// </summary>
@@ -40,12 +42,14 @@ namespace HobbyGames
                 {
                     if(loginsUsers.IDRole == 2)
                     {
+                        idemp = loginsUsers.IDe;
                         LoginTxt.Text = "";
                         PasswordTxt.Password = null;
                         ClassFrame.Mfrm.Navigate(new AdminPage());
                     }
                     else
                     {
+                        idemp = loginsUsers.IDe;
                         LoginTxt.Text = "";
                         PasswordTxt.Password = null;
                         ClassFrame.Mfrm.Navigate(new PageEMP());

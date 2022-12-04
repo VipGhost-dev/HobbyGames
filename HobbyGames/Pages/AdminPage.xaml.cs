@@ -39,5 +39,10 @@ namespace HobbyGames
         {
             ClassFrame.Mfrm.Navigate(new PageVIEWOrders());
         }
+
+        private void Cabinet_Click(object sender, RoutedEventArgs e)
+        {
+            ClassFrame.Mfrm.Navigate(new PageEMP());
+        }
     }
 }
