@@ -25,6 +25,14 @@ namespace HobbyGames
             InitializeComponent();
             listOrders.ItemsSource = ClassBase.BASE.Orders.ToList();
             listOrders.SelectedValuePath = "Id";
+
+            List<TableGames> games = ClassBase.BASE.TableGames.ToList();
+            GameBox.Items.Add("Все игры");
+            for(int i = 0; i < games.Count; i++)
+            {
+                GameBox.Items.Add(games[i].Name);
+            }
+            GameBox.SelectedIndex = 0;
         }
 
         private void ProfitBlock_Loaded(object sender, RoutedEventArgs e)
@@ -48,6 +56,92 @@ namespace HobbyGames
             int index = Convert.ToInt32(listOrders.SelectedValue);
             Orders order = ClassBase.BASE.Orders.FirstOrDefault(x => x.Id == index);
             ClassFrame.Mfrm.Navigate(new PageADDOrders(order));
+        }
+
+        private void GameBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        void Filter()
+        {
+            List<Orders> orders = new List<Orders>();
+            string game = GameBox.SelectedValue.ToString();
+
+            if (GameBox.SelectedIndex != 0)
+            {
+                orders = ClassBase.BASE.Orders.Where(z => z.TableGames.Name == game).ToList();
+            }
+            else
+            {
+                orders = ClassBase.BASE.Orders.ToList();
+            }
+
+            if(checkImage.IsChecked == true)
+            {
+                orders = orders.Where(z => z.TableGames.Picture != null).ToList();
+            }
+
+            switch (SortBox.SelectedIndex)
+            {
+                case 0:
+                    {
+                        orders.Sort((x,y) => x.Kolvo.CompareTo(y.Kolvo));
+                    }
+                break;
+                case 1:
+                    {
+                        orders.Sort((x, y) => x.Kolvo.CompareTo(y.Kolvo));
+                        orders.Reverse();
+                    }
+                break;
+                case 2:
+                    {
+                        orders.Sort((x, y) => x.CostS.CompareTo(y.CostS));
+                    }
+                break;
+                case 3:
+                    {
+                        orders.Sort((x, y) => x.CostS.CompareTo(y.CostS));
+                        orders.Reverse();
+                    }
+                break;
+                case 4:
+                    {
+                        orders.Sort((x, y) => x.TableGames.Name.CompareTo(y.TableGames.Name));
+                    }
+                break;
+                case 5:
+                    {
+                        orders.Sort((x, y) => x.TableGames.Name.CompareTo(y.TableGames.Name));
+                        orders.Reverse();
+                    }
+                break;
+            }
+
+            if (!string.IsNullOrWhiteSpace(SearchBox.Text))
+            {
+                orders = orders.Where(z => z.Employees.Second_Name.ToLower().Contains(SearchBox.Text.ToLower())).ToList();
+            }
+
+            listOrders.ItemsSource = orders;
+
+            
+        }
+
+        private void checkImage_Checked(object sender, RoutedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void SortBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filter();
         }
     }
 }
