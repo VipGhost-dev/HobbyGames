@@ -71,6 +71,7 @@
     <Compile Include="ChangePersonalData.xaml.cs">
       <DependentUpon>ChangePersonalData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\PageChange.cs" />
     <Compile Include="Pages\PageADDOrders.xaml.cs">
       <DependentUpon>PageADDOrders.xaml</DependentUpon>
     </Compile>

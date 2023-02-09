@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HobbyGames.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,8 @@ namespace HobbyGames
     /// </summary>
     public partial class PageVIEWOrders : Page
     {
+        PageChange pc = new PageChange();  // создаем объект класса для отображения страниц
+        List<Orders> OrderC = new List<Orders>();
         public PageVIEWOrders()
         {
             InitializeComponent();
@@ -33,6 +36,10 @@ namespace HobbyGames
                 GameBox.Items.Add(games[i].Name);
             }
             GameBox.SelectedIndex = 0;
+
+            OrderC = ClassBase.BASE.Orders.ToList();
+            pc.CountPage = ClassBase.BASE.Orders.ToList().Count;
+            DataContext = pc;  // добавляем объект для отображения страниц в ресурсы страницы
         }
 
         private void ProfitBlock_Loaded(object sender, RoutedEventArgs e)
@@ -65,66 +72,65 @@ namespace HobbyGames
 
         void Filter()
         {
-            List<Orders> orders = new List<Orders>();
             string game = GameBox.SelectedValue.ToString();
 
             if (GameBox.SelectedIndex != 0)
             {
-                orders = ClassBase.BASE.Orders.Where(z => z.TableGames.Name == game).ToList();
+                OrderC = ClassBase.BASE.Orders.Where(z => z.TableGames.Name == game).ToList();
             }
             else
             {
-                orders = ClassBase.BASE.Orders.ToList();
+                OrderC = ClassBase.BASE.Orders.ToList();
             }
 
             if(checkImage.IsChecked == true)
             {
-                orders = orders.Where(z => z.TableGames.Picture != null).ToList();
+                OrderC = OrderC.Where(z => z.TableGames.Picture != null).ToList();
             }
 
             switch (SortBox.SelectedIndex)
             {
                 case 0:
                     {
-                        orders.Sort((x,y) => x.Kolvo.CompareTo(y.Kolvo));
+                        OrderC.Sort((x,y) => x.Kolvo.CompareTo(y.Kolvo));
                     }
                 break;
                 case 1:
                     {
-                        orders.Sort((x, y) => x.Kolvo.CompareTo(y.Kolvo));
-                        orders.Reverse();
+                        OrderC.Sort((x, y) => x.Kolvo.CompareTo(y.Kolvo));
+                        OrderC.Reverse();
                     }
                 break;
                 case 2:
                     {
-                        orders.Sort((x, y) => x.CostS.CompareTo(y.CostS));
+                        OrderC.Sort((x, y) => x.CostS.CompareTo(y.CostS));
                     }
                 break;
                 case 3:
                     {
-                        orders.Sort((x, y) => x.CostS.CompareTo(y.CostS));
-                        orders.Reverse();
+                        OrderC.Sort((x, y) => x.CostS.CompareTo(y.CostS));
+                        OrderC.Reverse();
                     }
                 break;
                 case 4:
                     {
-                        orders.Sort((x, y) => x.TableGames.Name.CompareTo(y.TableGames.Name));
+                        OrderC.Sort((x, y) => x.TableGames.Name.CompareTo(y.TableGames.Name));
                     }
                 break;
                 case 5:
                     {
-                        orders.Sort((x, y) => x.TableGames.Name.CompareTo(y.TableGames.Name));
-                        orders.Reverse();
+                        OrderC.Sort((x, y) => x.TableGames.Name.CompareTo(y.TableGames.Name));
+                        OrderC.Reverse();
                     }
                 break;
             }
 
             if (!string.IsNullOrWhiteSpace(SearchBox.Text))
             {
-                orders = orders.Where(z => z.Employees.Second_Name.ToLower().Contains(SearchBox.Text.ToLower())).ToList();
+                OrderC = OrderC.Where(z => z.Employees.Second_Name.ToLower().Contains(SearchBox.Text.ToLower())).ToList();
             }
 
-            listOrders.ItemsSource = orders;
+            listOrders.ItemsSource = OrderC;
 
             
         }
@@ -142,6 +148,58 @@ namespace HobbyGames
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             Filter();
+        }
+
+        private void txtPageCount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                pc.CountPage = Convert.ToInt32(txtPageCount.Text); // если в текстовом поле есnь значение, присваиваем его свойству объекта, которое хранит количество записей на странице
+            }
+            catch
+            {
+                pc.CountPage = OrderC.Count; // если в текстовом поле значения нет, присваиваем свойству объекта, которое хранит количество записей на странице количество элементов в списке
+            }
+            pc.Countlist = OrderC.Count;  // присваиваем новое значение свойству, которое в объекте отвечает за общее количество записей
+            listOrders.ItemsSource = OrderC.Skip(0).Take(pc.CountPage).ToList();  // отображаем первые записи в том количестве, которое равно CountPage
+            pc.CurrentPage = 1; // текущая страница - это страница 1
+        }
+
+        private void GoPage_MouseDown(object sender, MouseButtonEventArgs e)  // обработка нажатия на один из Textblock в меню с номерами страниц
+        {
+            TextBlock tb = (TextBlock)sender;
+
+            switch (tb.Uid)  // определяем, куда конкретно было сделано нажатие
+            {
+                case "prev":
+                    pc.CurrentPage--;
+                    break;
+                case "next":
+                    pc.CurrentPage++;
+                    break;
+                default:
+                    pc.CurrentPage = Convert.ToInt32(tb.Text);
+                    break;
+            }
+            listOrders.ItemsSource = OrderC.Skip(pc.CurrentPage * pc.CountPage - pc.CountPage).Take(pc.CountPage).ToList();  // оображение записей постранично с определенным количеством на каждой странице
+            // Skip(pc.CurrentPage* pc.CountPage - pc.CountPage) - сколько пропускаем записей
+            // Take(pc.CountPage) - сколько записей отображаем на странице
+        }
+
+        private void btn_Click(object sender, RoutedEventArgs e)
+        {
+            pc.CurrentPage = 1;
+
+            try
+            {
+                pc.CountPage = Convert.ToInt32(txtPageCount.Text); // если в текстовом поле есnь значение, присваиваем его свойству объекта, которое хранит количество записей на странице
+            }
+            catch
+            {
+                pc.CountPage = OrderC.Count; // если в текстовом поле значения нет, присваиваем свойству объекта, которое хранит количество записей на странице количество элементов в списке
+            }
+            pc.Countlist = OrderC.Count;  // присваиваем новое значение свойству, которое в объекте отвечает за общее количество записей
+            listOrders.ItemsSource = OrderC.Skip(0).Take(pc.CountPage).ToList();  // отображаем первые записи в том количестве, которое равно CountPage
         }
     }
 }
