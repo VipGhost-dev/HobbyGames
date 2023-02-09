@@ -16,5 +16,6 @@
         <Button x:Name="Reg" Content="Зарегистрироватьcя" HorizontalAlignment="Left" Margin="442,331,0,0" VerticalAlignment="Top" Height="39" Width="181" Click="Reg_Click"/>
         <TextBox x:Name="LoginTxt" HorizontalAlignment="Center" Margin="0,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="27"/>
         <Image HorizontalAlignment="Center" Height="121" Margin="0,26,0,0" VerticalAlignment="Top" Width="347" Source="/Resources/logohg.png"/>
+        <Label x:Name="Ad" Content="Реклама" FontFamily="Impact" FontSize="16" VerticalAlignment="Top" MouseDown="Ad_MouseDown" Margin="488,375,0,0" HorizontalAlignment="Left" Width="90"/>
     </Grid>
 </Page>

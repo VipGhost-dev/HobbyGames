@@ -72,6 +72,9 @@
       <DependentUpon>ChangePersonalData.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\PageChange.cs" />
+    <Compile Include="Pages\AdPage.xaml.cs">
+      <DependentUpon>AdPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\PageADDOrders.xaml.cs">
       <DependentUpon>PageADDOrders.xaml</DependentUpon>
     </Compile>
@@ -136,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChangePersonalData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

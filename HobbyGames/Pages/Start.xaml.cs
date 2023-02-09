@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HobbyGames.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -69,6 +70,11 @@ namespace HobbyGames
         private void Reg_Click(object sender, RoutedEventArgs e)
         {
             ClassFrame.Mfrm.Navigate(new RegisterPage());
+        }
+
+        private void Ad_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ClassFrame.Mfrm.Navigate(new AdPage());
         }
     }
 }
